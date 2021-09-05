@@ -9,15 +9,15 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 import android.os.Bundle;
-import android.util.Log;
+import android.util.Log; 
 import android.widget.TextView;
 
 import com.google.gson.JsonObject;
 
 public class MainActivity extends AppCompatActivity {
-    private TextView textViewResult;
-    private CompendiumAPI compendiumAPI;
-
+private TextView textViewResult;
+private CompendiumAPI compendiumAPI;
+  
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
