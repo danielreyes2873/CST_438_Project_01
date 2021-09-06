@@ -30,4 +30,36 @@ public class Concept {
         this.name = name;
         this.api_reference = api_reference;
     }
+
+    public int getEntryID() {
+        return entryID;
+    }
+
+    public void setEntryID(int entryID) {
+        this.entryID = entryID;
+    }
+
+    public int getUserID() {
+        return UserID;
+    }
+
+    public void setUserID(int userID) {
+        UserID = userID;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getApi_reference() {
+        return api_reference;
+    }
+
+    public void setApi_reference(String api_reference) {
+        this.api_reference = api_reference;
+    }
 }
