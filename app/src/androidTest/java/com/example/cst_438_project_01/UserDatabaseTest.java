@@ -20,7 +20,6 @@ public class UserDatabaseTest {
         UserDatabase userDB = UserDatabase.getInstance(appContext);
         
         userDB.userDao().addUser(new User("Billy", "password1"));
-        System.out.println("hi");
         assertEquals(userDB.userDao().findByUsername("Billy").getUsername(),"Billy");
     }
 
