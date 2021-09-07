@@ -24,4 +24,16 @@ public abstract class UserDatabase extends RoomDatabase{
 
     public abstract UserDAO userDao();
 
+    public void populatInitialData() {
+        if (userDao().count()== 0) {
+            runInTransaction(new Runnable() {
+                @Override
+                public void run() {
+                    userDao().addUser(new User("billgates@hotmail.com", "password1"));
+                    userDao().addUser(new User("doctorc@unittest.com", "password2"));
+                    userDao().addUser(new User("drbruns@deeplearning.org", "password3"));
+                }
+            });
+        }
+    }
 }
