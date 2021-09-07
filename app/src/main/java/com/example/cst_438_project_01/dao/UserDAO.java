@@ -27,7 +27,7 @@ public interface UserDAO {
     @Query("DELETE FROM User where password = :passwordString")
     void deleteByPassword(String passwordString);
     @Insert
-    void insertAll(List<User> products);
+    void insertAll(List<User> users);
     @Update
     void update(User user);
     @Delete
