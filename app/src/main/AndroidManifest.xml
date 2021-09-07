@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CST_438_Project_01">
         <activity
-            android:name=".MainActivity"
+            android:name=".SearchActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

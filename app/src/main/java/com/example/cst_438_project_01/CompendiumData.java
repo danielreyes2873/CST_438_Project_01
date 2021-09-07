@@ -9,6 +9,13 @@ public class CompendiumData {
     @Expose
     private CompendiumEntry compendiumData;
 
+    @SerializedName("message")
+    private String errorMessage;
+
+    public String getErrorMessage() {
+        return errorMessage;
+    }
+
     public CompendiumEntry getCompendiumData() {
         return compendiumData;
     }
