@@ -1,9 +1,16 @@
 package com.example.cst_438_project_01;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 import android.content.Intent;
 import android.os.Bundle;
+ EdgarP/Login
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+ EdgarP/Login
         userName = (EditText) findViewById(R.id.loginUserName);
         password = (EditText) findViewById(R.id.loginPassword);
         loginBtn = (Button) findViewById(R.id.loginButton);
