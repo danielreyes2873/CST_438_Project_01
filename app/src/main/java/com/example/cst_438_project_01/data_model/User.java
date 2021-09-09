@@ -2,6 +2,7 @@ package com.example.cst_438_project_01.data_model;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 /**
@@ -12,7 +13,7 @@ import androidx.room.PrimaryKey;
 public class User {
 
     @PrimaryKey(autoGenerate = true)
-    private int UserID;
+    private int userID;
     @ColumnInfo(name = "username")
     private String username;
     @ColumnInfo(name = "password")
@@ -21,15 +22,21 @@ public class User {
     public User(String username, String password, int userID) {
         this.username = username;
         this.password = password;
-        UserID = userID;
+        this.userID = userID;
+    }
+
+    @Ignore
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
     }
 
     public int getUserID() {
-        return UserID;
+        return this.userID;
     }
 
     public void setUserID(int userID) {
-        UserID = userID;
+        this.userID = userID;
     }
 
     public String getUsername() {
