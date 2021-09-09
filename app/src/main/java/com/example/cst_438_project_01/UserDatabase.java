@@ -17,14 +17,14 @@ public abstract class UserDatabase extends RoomDatabase{
 
     public static synchronized UserDatabase getInstance(Context context) {
         if (instance == null) {
-            instance = Room.databaseBuilder(context.getApplicationContext(), UserDatabase.class, DB_NAME).fallbackToDestructiveMigration().build();
+            instance = Room.databaseBuilder(context.getApplicationContext(), UserDatabase.class, DB_NAME).fallbackToDestructiveMigration().allowMainThreadQueries().build();
         }
         return instance;
     }
 
     public abstract UserDAO userDao();
 
-    public void populatInitialData() {
+    public void populateInitialData() {
         if (userDao().count()== 0) {
             runInTransaction(new Runnable() {
                 @Override
