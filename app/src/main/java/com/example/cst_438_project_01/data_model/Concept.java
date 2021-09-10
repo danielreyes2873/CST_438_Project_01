@@ -2,6 +2,7 @@ package com.example.cst_438_project_01.data_model;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 /**
@@ -15,7 +16,7 @@ public class Concept {
 
     //this is a foreign key but we're not explicitly informing the database that this is the case, will use WHERE clause
     @ColumnInfo(name = "UserID")
-    private int UserID;
+    private int userID;
 
     @ColumnInfo(name = "name")
     private String name;
@@ -26,7 +27,14 @@ public class Concept {
 
     public Concept(int entryID, int userID, String name, String api_reference) {
         this.entryID = entryID;
-        UserID = userID;
+        this.userID = userID;
+        this.name = name;
+        this.api_reference = api_reference;
+    }
+
+    @Ignore
+    public Concept(int userID, String name, String api_reference) {
+        this.userID = userID;
         this.name = name;
         this.api_reference = api_reference;
     }
@@ -40,11 +48,11 @@ public class Concept {
     }
 
     public int getUserID() {
-        return UserID;
+        return userID;
     }
 
     public void setUserID(int userID) {
-        UserID = userID;
+        userID = userID;
     }
 
     public String getName() {

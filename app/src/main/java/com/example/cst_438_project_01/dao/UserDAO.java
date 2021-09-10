@@ -18,10 +18,14 @@ public interface UserDAO {
     int count();
     @Query("SELECT * FROM User")
     List<User> getAllUsers();
+    @Query("SELECT * FROM User WHERE UserID = :userIDString")
+    User findByUserID(String userIDString);
     @Query("SELECT * FROM User WHERE username = :usernameString")
     User findByUsername(String usernameString);
     @Query("SELECT * FROM User WHERE password = :passwordString")
     User findByPassword(String passwordString);
+    @Query("DELETE FROM User WHERE UserID = :userIDString")
+    void deleteByUserID(String userIDString);
     @Query("DELETE FROM User WHERE username = :usernameString")
     void deleteByUsername(String usernameString);
     @Query("DELETE FROM User where password = :passwordString")
