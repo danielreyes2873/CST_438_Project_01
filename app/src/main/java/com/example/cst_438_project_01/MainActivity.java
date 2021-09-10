@@ -10,10 +10,13 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.service.autofill.UserData;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.example.cst_438_project_01.data_model.User;
 
 import org.w3c.dom.Text;
 
@@ -36,26 +39,36 @@ public class MainActivity extends AppCompatActivity {
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //check if username and password are valid
                 validate(userName.getText().toString(), password.getText().toString());
             }
         });
    }
 
    private void validate(String user, String userPassword){
+       //Access Database
+       UserDatabase userDatabase = UserDatabase.getInstance(this.getApplicationContext());
+       //Populate database
+       userDatabase.populateInitialData();
 
-        if(user.equals("Admin")){
-            if(userPassword.equals("!!!")){
-                Intent intent = new Intent(MainActivity.this, HomePage.class);
-                startActivity(intent);
-            }
-            else{
-                helpMessage.setText("Wrong Password. Try Again");
-            }
-        }
-        else{
-            helpMessage.setText("Username does not Exist");
-        }
+       //Check if the username exists in the database
+       if(userDatabase.userDao().findByUsername(user) != null){
+           //Save the info for that username
+           User current = userDatabase.userDao().findByUsername(user);
 
+           //check if the password corresponds to the username
+           if(current.getPassword().equals(userPassword)){
+               //If everything is good then the application moves on to the next activity
+               Intent intent = new Intent(MainActivity.this, SearchActivity.class);
+               startActivity(intent);
+           }
+           else{
+               helpMessage.setText("Password is wrong. Try Again");
+           }
+       }
+       else{
+           helpMessage.setText("Username does not exist");
+       }
    }
 
 }

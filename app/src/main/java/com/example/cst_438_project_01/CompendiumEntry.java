@@ -16,11 +16,29 @@ public class CompendiumEntry {
 
     private List<String> drops;
 
-    private Integer id;
+    private int id;
 
     private String image;
 
     private String name;
+
+    @SerializedName("hearts_recovered")
+    private int heartRecovery;
+
+    @SerializedName("cooing_effect")
+    private String effect;
+
+    private int attack;
+
+    private int defense;
+
+    public int getAttack() {
+        return attack;
+    }
+
+    public int getDefense() {
+        return defense;
+    }
 
     public String getName() {
         return name;
@@ -48,5 +66,13 @@ public class CompendiumEntry {
 
     public List<String> getDrops() {
         return drops;
+    }
+
+    public int getHeartRecovery() {
+        return heartRecovery;
+    }
+
+    public String getEffect() {
+        return effect;
     }
 }
