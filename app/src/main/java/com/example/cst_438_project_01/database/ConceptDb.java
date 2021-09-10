@@ -8,7 +8,7 @@ import android.content.Context;
 import com.example.cst_438_project_01.dao.ConceptDAO;
 import com.example.cst_438_project_01.data_model.Concept;
 
-@Database(entities = {Concept.class}, version=1, exportSchema = false)
+@Database(entities = {Concept.class}, version=2, exportSchema = false)
 public abstract class ConceptDb extends RoomDatabase {
     public abstract ConceptDAO concept();
 
