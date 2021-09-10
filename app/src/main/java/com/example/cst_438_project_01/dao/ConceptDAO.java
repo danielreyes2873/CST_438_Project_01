@@ -25,11 +25,11 @@ public interface ConceptDAO {
     @Query("SELECT * FROM Concept WHERE api_reference = :api_referenceString")
     Concept findByApiReference(String api_referenceString);
     @Query("DELETE FROM Concept WHERE userID = :userIDString")
-    Concept deleteByUserID(String userIDString);
+    void deleteByUserID(String userIDString);
     @Query("DELETE FROM Concept WHERE name = :nameString")
-    Concept deleteByName(String nameString);
+    void deleteByName(String nameString);
     @Query("DELETE FROM Concept WHERE api_reference = :api_referenceString")
-    Concept deleteByApiReference(String api_referenceString);
+    void deleteByApiReference(String api_referenceString);
     @Insert
     void insertAll(List<Concept> concepts);
     @Update
