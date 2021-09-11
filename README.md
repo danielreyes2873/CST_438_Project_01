@@ -5,7 +5,7 @@ This Android app is an Encyclopedia of Items found in Hyrule as featured in Brea
 Retrofit: https://square.github.io/retrofit/
 
 ## Contributors:
-Robert Huskins: https://github.com/roberthuskins
-Daniel Reyes: https://github.com/danielreyes2873
-Neil McMahan: https://github.com/nmcmahan
-Edgar Peralta: https://github.com/EPeralta18
+Robert Huskins: https://github.com/roberthuskins <br>
+Daniel Reyes: https://github.com/danielreyes2873 <br>
+Neil McMahan: https://github.com/nmcmahan <br>
+Edgar Peralta: https://github.com/EPeralta18 <br>
