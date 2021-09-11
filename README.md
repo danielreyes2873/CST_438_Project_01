@@ -1,7 +1,7 @@
 # CST_438_Project_01
 This Android app is an Encyclopedia of Items found in Hyrule as featured in Breath of the Wild.
 
-##Libraries:
+## Libraries:
 Retrofit: https://square.github.io/retrofit/
 
 ## Contributors:
