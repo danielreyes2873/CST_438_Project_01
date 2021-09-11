@@ -7,7 +7,7 @@ store user accounts and the data users store. It also makes use of the Retrofit 
 Retrofit: https://square.github.io/retrofit/
 
 ## Contributors:
-Robert Huskins: https://github.com/roberthuskins <br>
-Daniel Reyes: https://github.com/danielreyes2873 <br>
-Neil McMahan: https://github.com/nmcmahan <br>
-Edgar Peralta: https://github.com/EPeralta18 <br>
+Robert Huskins: roberthuskins https://github.com/roberthuskins <br>
+Daniel Reyes: danielreyes2873 https://github.com/danielreyes2873 <br>
+Neil McMahan: nmcmahan https://github.com/nmcmahan <br>
+Edgar Peralta: EPeralta18 https://github.com/EPeralta18 <br>
