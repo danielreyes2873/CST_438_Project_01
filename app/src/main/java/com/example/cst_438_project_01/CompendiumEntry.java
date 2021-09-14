@@ -10,17 +10,36 @@ public class CompendiumEntry {
 
     private String category;
 
+    @SerializedName("common_locations")
     private List<String> commonLocations;
 
     private String description;
 
     private List<String> drops;
 
-    private Integer id;
+    private int id;
 
     private String image;
 
     private String name;
+
+    @SerializedName("hearts_recovered")
+    private double heartRecovery;
+
+    @SerializedName("cooing_effect")
+    private String effect;
+
+    private int attack;
+
+    private int defense;
+
+    public int getAttack() {
+        return attack;
+    }
+
+    public int getDefense() {
+        return defense;
+    }
 
     public String getName() {
         return name;
@@ -48,5 +67,13 @@ public class CompendiumEntry {
 
     public List<String> getDrops() {
         return drops;
+    }
+
+    public double getHeartRecovery() {
+        return heartRecovery;
+    }
+
+    public String getEffect() {
+        return effect;
     }
 }
