@@ -3,4 +3,5 @@
     <string name="textview">Search Results</string>
     <string name="name">Search PAge</string>
     <string name="button">Search</string>
+    <string name="addItemButton">Add to items</string>
 </resources>

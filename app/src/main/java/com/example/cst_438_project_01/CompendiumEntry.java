@@ -10,6 +10,7 @@ public class CompendiumEntry {
 
     private String category;
 
+    @SerializedName("common_locations")
     private List<String> commonLocations;
 
     private String description;
@@ -23,7 +24,7 @@ public class CompendiumEntry {
     private String name;
 
     @SerializedName("hearts_recovered")
-    private int heartRecovery;
+    private double heartRecovery;
 
     @SerializedName("cooing_effect")
     private String effect;
@@ -68,7 +69,7 @@ public class CompendiumEntry {
         return drops;
     }
 
-    public int getHeartRecovery() {
+    public double getHeartRecovery() {
         return heartRecovery;
     }
 

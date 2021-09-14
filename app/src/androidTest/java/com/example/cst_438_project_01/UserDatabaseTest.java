@@ -8,6 +8,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.platform.app.InstrumentationRegistry;
 
 import com.example.cst_438_project_01.data_model.User;
+import com.example.cst_438_project_01.database.UserDatabase;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
