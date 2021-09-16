@@ -6,6 +6,7 @@ import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
 
+
 import com.example.cst_438_project_01.data_model.User;
 
 import java.util.List;
@@ -18,14 +19,14 @@ public interface UserDAO {
     int count();
     @Query("SELECT * FROM User")
     List<User> getAllUsers();
-    @Query("SELECT * FROM User WHERE UserID = :userIDString")
-    User findByUserID(String userIDString);
+    @Query("SELECT * FROM User WHERE UserID = :userID")
+    User findByUserID(int userID);
     @Query("SELECT * FROM User WHERE username = :usernameString")
     User findByUsername(String usernameString);
     @Query("SELECT * FROM User WHERE password = :passwordString")
     User findByPassword(String passwordString);
-    @Query("DELETE FROM User WHERE UserID = :userIDString")
-    void deleteByUserID(String userIDString);
+    @Query("DELETE FROM User WHERE UserID = :userID")
+    void deleteByUserID(int userID);
     @Query("DELETE FROM User WHERE username = :usernameString")
     void deleteByUsername(String usernameString);
     @Query("DELETE FROM User where password = :passwordString")

@@ -24,7 +24,7 @@ public interface ConceptDAO {
     Concept findByName(String nameString);
     @Query("SELECT * FROM Concept WHERE api_reference = :api_referenceString")
     Concept findByApiReference(String api_referenceString);
-    @Query("DELETE FROM Concept WHERE userID = :userID")
+    @Query("DELETE FROM Concept WHERE userID = :userID LIMIT 1")
     void deleteByUserID(int userID);
     @Query("DELETE FROM Concept WHERE name = :nameString")
     void deleteByName(String nameString);
@@ -32,6 +32,8 @@ public interface ConceptDAO {
     void deleteByApiReference(String api_referenceString);
     @Query("DELETE FROM Concept")
     void deleteAll();
+    @Query("SELECT * FROM Concept WHERE userID = :userID")
+    List<Concept> findAllByUserID(int userID);
     @Insert
     void insertAll(List<Concept> concepts);
     @Update
