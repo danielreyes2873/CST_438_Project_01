@@ -44,7 +44,7 @@ public class UserDatabaseTest {
         dao.addUser(new User("u2", "p2", 2));
         dao.addUser(new User("u3", "p3", 3));
         assertEquals(dao.findByUsername("u1").getUserID(),1);
-        assertEquals(dao.findByUserID("2").getUsername(),"u2");
+        assertEquals(dao.findByUserID(2).getUsername(),"u2");
         assertEquals(dao.findByPassword("p3").getPassword(),"p3");
         assertEquals(dao.findByPassword("p3").getUserID(),3);
         dao.deleteAll();
@@ -60,7 +60,7 @@ public class UserDatabaseTest {
     @Test(expected = NullPointerException.class)
     public void testDeleteByUserID() {
         dao.addUser(new User("deleteMe", "p1", 1));
-        dao.deleteByUserID("1");
+        dao.deleteByUserID(1);
         dao.findByUsername("deleteMe").getUserID();
     }
 
