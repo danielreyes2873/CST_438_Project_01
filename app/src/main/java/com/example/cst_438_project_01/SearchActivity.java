@@ -77,6 +77,8 @@ public class SearchActivity extends AppCompatActivity {
                         return;
                     }
 
+                    //Used to know if an image is found.
+                    boolean validImage = false;
                     CompendiumData values = response.body();
                     String content = "";
                     if (values.getCompendiumData().getId()!=0) {
@@ -93,11 +95,11 @@ public class SearchActivity extends AppCompatActivity {
                                 content += "Name: " + values.getCompendiumData().getName() + "\n Description: " +
                                         values.getCompendiumData().getDescription() + "\n Drops: " + drops
                                         + "\n Common Locations: " + locations + "\n Click to View Image";
-                                showImage(values.getCompendiumData().getImage(), values.getCompendiumData().getName());
+                                validImage = true;
                             } else {
                                 content += "Name: " + values.getCompendiumData().getName() + "\n Description: " +
                                         values.getCompendiumData().getDescription() + "\n Click to View Image";
-                                showImage(values.getCompendiumData().getImage(), values.getCompendiumData().getName());
+                                validImage = true;
                             }
                         } else if (values.getCompendiumData().getCategory().equals("monsters")) {
                             for (String drop : values.getCompendiumData().getDrops()) {
@@ -106,23 +108,23 @@ public class SearchActivity extends AppCompatActivity {
                             content += "Name: " + values.getCompendiumData().getName() + "\nDescription: " +
                                     values.getCompendiumData().getDescription() + "\nDrops: " + drops
                                     + "\nCommon Locations: " + locations + "\n Click to View Image";
-                            showImage(values.getCompendiumData().getImage(), values.getCompendiumData().getName());
+                            validImage = true;
                         } else if (values.getCompendiumData().getCategory().equals("equipment")) {
                             content += "Name: " + values.getCompendiumData().getName() + "\n Description: " +
                                     values.getCompendiumData().getDescription() + "\n Attack: " + values.getCompendiumData().getAttack()
                                     + " Defense: " + values.getCompendiumData().getDefense() +
                                     "\nCommon Locations: " + locations + "\n Click to View Image";
-                            showImage(values.getCompendiumData().getImage(), values.getCompendiumData().getName());
+                            validImage = true;
                         } else if (values.getCompendiumData().getCategory().equals("materials")) {
                             content += "Name: " + values.getCompendiumData().getName() + "\n Description: " +
                                     values.getCompendiumData().getDescription() +
                                     "\nCommon Locations: " + locations + "\n Click to View Image";
-                            showImage(values.getCompendiumData().getImage(), values.getCompendiumData().getName());
+                            validImage = true;
                         } else {
                             content += "Name: " + values.getCompendiumData().getName() + " Description: " +
                                     values.getCompendiumData().getDescription() +
                                     "\nCommon Locations: " + locations + "\n Click to View Image";
-                            showImage(values.getCompendiumData().getImage(), values.getCompendiumData().getName());
+                            validImage = true;
                         }
                         itemButton.setVisibility(View.VISIBLE);
                         itemButton.setOnClickListener(view ->{
@@ -136,6 +138,15 @@ public class SearchActivity extends AppCompatActivity {
                     }
                     textViewResult.setText(content);
                     // assert values != null;
+
+                    if(validImage){
+                        textViewResult.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                showImage(values.getCompendiumData().getImage(), values.getCompendiumData().getName());
+                            }
+                        });
+                    }
 
                     Log.i("Content is", content);
 
