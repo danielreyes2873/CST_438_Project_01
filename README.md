@@ -4,7 +4,7 @@ that are featured in Breath of the Wild and save them to user profiles. Once sav
 store user accounts and the data users store. It also makes use of the Retrofit http client to make API calls.
 
 ## Libraries:
-Retrofit: https://square.github.io/retrofit/
+Retrofit: https://square.github.io/retrofit/ <br>
 Glide: https://bumptech.github.io/glide/
 
 ## Contributors:
