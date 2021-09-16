@@ -5,6 +5,7 @@ store user accounts and the data users store. It also makes use of the Retrofit 
 
 ## Libraries:
 Retrofit: https://square.github.io/retrofit/
+Glide: https://bumptech.github.io/glide/
 
 ## Contributors:
 Robert Huskins: roberthuskins https://github.com/roberthuskins <br>
