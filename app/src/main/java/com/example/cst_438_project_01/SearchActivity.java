@@ -102,8 +102,10 @@ public class SearchActivity extends AppCompatActivity {
                                 validImage = true;
                             }
                         } else if (values.getCompendiumData().getCategory().equals("monsters")) {
-                            for (String drop : values.getCompendiumData().getDrops()) {
-                                drops.append(drop).append(", ");
+                            if (values.getCompendiumData().getId()!= 153 && values.getCompendiumData().getId()!=154 && values.getCompendiumData().getId()!=155) {
+                                for (String drop : values.getCompendiumData().getDrops()) {
+                                    drops.append(drop).append(", ");
+                                }
                             }
                             content += "Name: " + values.getCompendiumData().getName() + "\nDescription: " +
                                     values.getCompendiumData().getDescription() + "\nDrops: " + drops
