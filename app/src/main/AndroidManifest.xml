@@ -10,7 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CST_438_Project_01">
         <activity
-            android:name=".HomePage"
+            android:name=".MainPage"
+            android:exported="true" />
+        <activity
+            android:name=".ViewAllAPI"
             android:exported="true" />
         <activity
             android:name=".SearchActivity"

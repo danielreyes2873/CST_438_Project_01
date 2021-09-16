@@ -1,7 +1,11 @@
 <resources>
     <string name="app_name">CST_438_Project_01</string>
     <string name="textview">Search Results</string>
-    <string name="name">Search PAge</string>
-    <string name="button">Search</string>
+    <string name="name">Search Page</string>
     <string name="addItemButton">Add to items</string>
+    <string name="allItemView">All Item Names</string>
+    <string name="itemScroll" />
+    <string name="button">Search</string>
+    <string name="youItemBttn">Your Items</string>
+    <string name="allItemBttn">All item List</string>
 </resources>

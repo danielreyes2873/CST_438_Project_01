@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
            //check if the password corresponds to the username
            if(current.getPassword().equals(userPassword)){
                //If everything is good then the application moves on to the next activity
-               Intent intent = new Intent(MainActivity.this, SearchActivity.class);
+               Intent intent = new Intent(MainActivity.this, MainPage.class);
                intent.putExtra("USERNAME", user);
                intent.putExtra("USERID", current.getUserID());
                startActivity(intent);
