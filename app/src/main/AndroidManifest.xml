@@ -15,7 +15,6 @@
             android:name=".ViewItems"
             android:exported="true" />
         <activity
-            android:name=".HomePage"
             android:name=".MainPage"
             android:exported="true" />
         <activity

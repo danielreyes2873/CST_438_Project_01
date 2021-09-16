@@ -36,7 +36,10 @@ public class MainPage extends AppCompatActivity {
         });
 
         youritems.setOnClickListener(view -> {
-            Intent intent = new Intent();
+            Intent intent = new Intent(MainPage.this, ViewItems.class);
+            intent.putExtra("USERID",userid);
+            startActivity(intent);
+
         });
     }
 }

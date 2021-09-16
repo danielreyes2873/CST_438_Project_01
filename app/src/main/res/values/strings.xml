@@ -8,4 +8,5 @@
     <string name="button">Search</string>
     <string name="youItemBttn">Your Items</string>
     <string name="allItemBttn">All item List</string>
+    <string name="placeholder">PlaceHolder</string>
 </resources>

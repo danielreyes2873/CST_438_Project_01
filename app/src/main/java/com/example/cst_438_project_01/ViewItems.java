@@ -29,16 +29,18 @@ public class ViewItems extends AppCompatActivity implements View.OnClickListener
         UserDatabase userDatabase = UserDatabase.getInstance(this.getApplicationContext());
         ConceptDb concepts = ConceptDb.getInstance(this.getApplicationContext());
 
-        String welcomeMessage = userDatabase.userDao().findByUserID(userid).getUsername() + "'s Items";
+        String welcomeMessage = userDatabase.userDao().findByUserID(userid).getUsername() + "'s Saved Items";
         viewItemsWelcome.setText(welcomeMessage);
 
         List<Concept> items = concepts.concept().findAllByUserID(userid);
 
+        int i = 1;
         for(Concept item: items) {
             String content = "";
-            content += "Name: " + item.getName() + "\n";
-            content += "API Reference: " + item.getApi_reference() + "\n\n";
+            content += "\n";
+            content += i + ". " + item.getApi_reference() + "\n";
             itemsList.append(content);
+            i++;
         }
 
         returnButton.setOnClickListener(this);
