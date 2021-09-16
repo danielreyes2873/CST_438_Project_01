@@ -2,122 +2,76 @@ package com.example.cst_438_project_01.database;
 
 import static org.junit.Assert.*;
 import android.content.Context;
+import android.util.Log;
+
+import androidx.room.Room;
+import androidx.test.core.app.ApplicationProvider;
 import androidx.test.platform.app.InstrumentationRegistry;
+
+import com.example.cst_438_project_01.dao.ConceptDAO;
 import com.example.cst_438_project_01.data_model.Concept;
+import com.example.cst_438_project_01.data_model.User;
+
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.IOException;
+
 public class ConceptDbTest {
-
+        private ConceptDb db;
+        private ConceptDAO dao;
         @Before
-        public void clearDB() {
-            Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-            ConceptDb conceptDb = ConceptDb.getInstance(appContext);
-            conceptDb.concept().deleteAll();
+        public void createDb() {
+            Context context = ApplicationProvider.getApplicationContext();
+            db = Room.inMemoryDatabaseBuilder(context, ConceptDb.class).build();
+            dao = db.concept();
         }
-        @Test
-        public void testInsertConcept() {
-            Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-            ConceptDb conceptDb = ConceptDb.getInstance(appContext);
-            conceptDb.concept().addConcept(new Concept(1,"thing","api.reference.com"));
-            assertEquals(conceptDb.concept().getAllConcepts().size(), 1);
-            conceptDb.concept().addConcept(new Concept(2,"otherThing","api.reference.com"));
-            assertEquals(conceptDb.concept().getAllConcepts().size(), 2);
+
+        @After
+        public void closeDb() throws IOException {
+            db.close();
         }
 
         @Test
-        public void testCount() {
-            Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-            ConceptDb conceptDb = ConceptDb.getInstance(appContext);
-            assertEquals(conceptDb.concept().count(), 0);
-            conceptDb.concept().addConcept(new Concept(3,"anotherThing","api.reference.com"));
-            assertEquals(conceptDb.concept().count(), 1);
-            conceptDb.concept().addConcept(new Concept(4,"andAnotherThing","api.reference.com"));
-            conceptDb.concept().addConcept(new Concept(5,"oneMoreThing","api.reference.com"));
-            assertEquals(conceptDb.concept().count(), 3);
+        public void testInsertFindConcept() {
+            dao.addConcept(new Concept(1,"thing","api.reference.com/1"));
+            dao.addConcept(new Concept(2,"thing2","api.reference.com/2"));
+            dao.addConcept(new Concept(3, "thing3","api.reference.com/3"));
+            assertEquals(dao.findByApiReference("api.reference.com/1").getName(), "thing");
+            assertEquals(dao.findByUserID(2).getName(), "thing2");
+            assertEquals(dao.findByName("thing3").getName(), "thing3");
+            dao.deleteAll();
+
         }
 
-        @Test
+        @Test(expected = NullPointerException.class)
         public void testDeleteByName() {
-            Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-            ConceptDb conceptDb = ConceptDb.getInstance(appContext);
-            conceptDb.concept().addConcept(new Concept(1,"thing","api.reference.com"));
-            conceptDb.concept().addConcept(new Concept(2,"otherThing","api.reference.com"));
-            conceptDb.concept().addConcept(new Concept(3,"anotherThing","api.reference.com"));
-            conceptDb.concept().deleteByName("thing");
-            assertEquals(conceptDb.concept().count(), 2);
-            conceptDb.concept().deleteByName("anotherThing");
-            assertEquals(conceptDb.concept().count(), 1);
+            dao.addConcept(new Concept(1,"deleteMe","deleteme.com"));
+            dao.deleteByName("deleteMe");
+            dao.findByName("deleteMe").getName();
         }
 
-        @Test
+        @Test(expected = NullPointerException.class)
         public void testDeleteByUserID() {
-            Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-            ConceptDb conceptDb = ConceptDb.getInstance(appContext);
-            conceptDb.concept().addConcept(new Concept(1,"thing","api.reference.com"));
-            conceptDb.concept().addConcept(new Concept(2,"otherThing","api.reference.com"));
-            conceptDb.concept().addConcept(new Concept(3,"anotherThing","api.reference.com"));
-            conceptDb.concept().addConcept(new Concept(4,"andAnotherThing","api.reference.com"));
-            conceptDb.concept().addConcept(new Concept(5,"oneMoreThing","api.reference.com"));
-            conceptDb.concept().deleteByUserID(2);
-            conceptDb.concept().deleteByUserID(4);
-            conceptDb.concept().deleteByUserID(3);
-            assertEquals(conceptDb.concept().count(), 2);
+            dao.addConcept(new Concept(1,"deleteMe","deleteme.com"));
+            dao.deleteByUserID(1);
+            dao.findByName("deleteMe").getName();
         }
 
-        @Test
+        @Test(expected = NullPointerException.class)
         public void testDeleteByApiReference() {
-            Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-            ConceptDb conceptDb = ConceptDb.getInstance(appContext);
-            conceptDb.concept().addConcept(new Concept(2,"otherThing","api.reference.thisone.com"));
-            conceptDb.concept().addConcept(new Concept(4,"andAnotherThing","api.reference.thatone.com"));
-            conceptDb.concept().addConcept(new Concept(5,"oneMoreThing","api.reference.theotherone.com"));
-            conceptDb.concept().deleteByApiReference("api.reference.thatone.com");
-            conceptDb.concept().deleteByApiReference("api.reference.thisone.com");
-            assertEquals(conceptDb.concept().count(), 1);
+            dao.addConcept(new Concept(1,"deleteMe","deleteme.com"));
+            dao.deleteByApiReference("deleteme.com");
+            dao.findByName("deleteMe").getName();
         }
 
-        @Test
-        public void testFindByName() {
-            Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-            ConceptDb conceptDb = ConceptDb.getInstance(appContext);
-            conceptDb.concept().addConcept(new Concept(1,"thing","api.reference.com"));
-            conceptDb.concept().addConcept(new Concept(2,"otherThing","api.reference.com"));
-            conceptDb.concept().addConcept(new Concept(3,"anotherThing","api.reference.com"));
-            conceptDb.concept().addConcept(new Concept(4,"andAnotherThing","api.reference.com"));
-            conceptDb.concept().addConcept(new Concept(5,"oneMoreThing","api.reference.com"));
-            assertEquals(conceptDb.concept().findByName("otherThing").getName(),"otherThing");
-            assertEquals(conceptDb.concept().findByName("anotherThing").getName(),"anotherThing");
-            assertEquals(conceptDb.concept().findByName("oneMoreThing").getName(),"oneMoreThing");
+        @Test(expected = NullPointerException.class)
+        public void testDeleteAll() {
+            dao.addConcept(new Concept(1,"deleteMe","deleteme.com"));
+            dao.deleteAll();
+            dao.findByName("deleteMe").getName();
         }
-
-    @Test
-    public void testFindByUserID() {
-        Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        ConceptDb conceptDb = ConceptDb.getInstance(appContext);
-        conceptDb.concept().addConcept(new Concept(1,"thing","api.reference.com"));
-        conceptDb.concept().addConcept(new Concept(2,"otherThing","api.reference.com"));
-        conceptDb.concept().addConcept(new Concept(3,"anotherThing","api.reference.com"));
-        conceptDb.concept().addConcept(new Concept(4,"andAnotherThing","api.reference.com"));
-        conceptDb.concept().addConcept(new Concept(5,"oneMoreThing","api.reference.com"));
-        assertEquals(conceptDb.concept().findByUserID(2).getUserID(),2);
-        assertEquals(conceptDb.concept().findByUserID(5).getUserID(),5);
-        assertEquals(conceptDb.concept().findByUserID(4).getUserID(),4);
-    }
-
-    @Test
-    public void testFindByApiReference() {
-        Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        ConceptDb conceptDb = ConceptDb.getInstance(appContext);
-        conceptDb.concept().addConcept(new Concept(1,"thing","api.reference.thisone.com"));
-        conceptDb.concept().addConcept(new Concept(2,"otherThing","api.reference.thatone.com"));
-        conceptDb.concept().addConcept(new Concept(3,"anotherThing","api.reference.theotherone.com"));
-        conceptDb.concept().addConcept(new Concept(4,"andAnotherThing","api.reference.orthisone.com"));
-        conceptDb.concept().addConcept(new Concept(5,"oneMoreThing","api.reference.nothisone.com"));
-        assertEquals(conceptDb.concept().findByApiReference("api.reference.nothisone.com").getApi_reference(),"api.reference.nothisone.com");
-        assertEquals(conceptDb.concept().findByApiReference("api.reference.theotherone.com").getApi_reference(),"api.reference.theotherone.com");
-        assertEquals(conceptDb.concept().findByApiReference("api.reference.thatone.com").getApi_reference(),"api.reference.thatone.com");
-    }
 
 }

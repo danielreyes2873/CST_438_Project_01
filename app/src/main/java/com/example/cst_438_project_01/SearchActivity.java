@@ -103,6 +103,13 @@ private Button itemButton;
                         itemButton.setVisibility(View.VISIBLE);
                         itemButton.setOnClickListener(view ->{
                             concepts.concept().addConcept(new Concept(userid, username, finalSearch));
+
+                            Log.i("q","Hello Everybody");
+                            for(Concept x : concepts.concept().getAllConcepts()) {
+                                Log.i("q",x.getName());
+                                Log.i("q",x.getApi_reference());
+                            }
+
                             String added = "Item Added";
                             textViewResult.setText(added);
                             itemButton.setVisibility(View.INVISIBLE);
