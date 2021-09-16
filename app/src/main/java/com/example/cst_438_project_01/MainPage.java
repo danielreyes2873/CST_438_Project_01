@@ -34,5 +34,9 @@ public class MainPage extends AppCompatActivity {
             intent.putExtra("USERID", userid);
             startActivity(intent);
         });
+
+        youritems.setOnClickListener(view -> {
+            Intent intent = new Intent();
+        });
     }
 }
