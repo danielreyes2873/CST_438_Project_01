@@ -36,7 +36,7 @@ public class MainPage extends AppCompatActivity {
         });
 
         youritems.setOnClickListener(view -> {
-            Intent intent = new Intent(MainPage.this, ViewItems.class);
+            Intent intent = new Intent(MainPage.this, itemsViewRec.class);
             intent.putExtra("USERID",userid);
             startActivity(intent);
 
