@@ -33,6 +33,8 @@ public interface UserDAO {
     void deleteByPassword(String passwordString);
     @Query("DELETE FROM User")
     void deleteAll();
+    @Query("UPDATE User SET password = :password where UserID = :userID")
+    void changePassword(int userID, String password);
     @Insert
     void insertAll(List<User> users);
     @Update
