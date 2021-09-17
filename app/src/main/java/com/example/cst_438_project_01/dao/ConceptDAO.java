@@ -10,6 +10,9 @@ import com.example.cst_438_project_01.data_model.Concept;
 
 import java.util.List;
 
+/**
+ * Concept Data access Object. Methods here can be used to access the SQL backend for android rooms.
+ */
 @Dao
 public interface ConceptDAO {
     @Insert
