@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CST_438_Project_01">
         <activity
+            android:name=".PasswordChangeActivity"
+            android:exported="true" />
+        <activity
             android:name=".ViewItems"
             android:exported="true" />
         <activity

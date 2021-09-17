@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
    private void validate(String user, String userPassword){
        //Access Database
        UserDatabase userDatabase = UserDatabase.getInstance(this.getApplicationContext());
-       //Populate database
+       //Populate database (uncomment below line if you don't want to have to register)
        userDatabase.populateInitialData();
 
        //Check if the username exists in the database
