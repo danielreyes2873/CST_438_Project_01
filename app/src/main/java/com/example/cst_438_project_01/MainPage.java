@@ -10,6 +10,7 @@ public class MainPage extends AppCompatActivity {
     private Button allitems;
     private Button youritems;
     private Button searchpage;
+    private Button changePassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +20,7 @@ public class MainPage extends AppCompatActivity {
         allitems = findViewById(R.id.allItemBttn);
         youritems = findViewById(R.id.yourItemBttn);
         searchpage = findViewById(R.id.SearchBttn);
+        changePassword = findViewById(R.id.changePasswordIntent);
         String user = getIntent().getStringExtra("USERNAME");
         int userid = getIntent().getIntExtra("USERID", 0);
 
@@ -41,5 +43,12 @@ public class MainPage extends AppCompatActivity {
             startActivity(intent);
 
         });
+
+        changePassword.setOnClickListener(view -> {
+            Intent intent = new Intent(MainPage.this, PasswordChangeActivity.class);
+            intent.putExtra("USERID", userid);
+            startActivity(intent);
+        });
+
     }
 }

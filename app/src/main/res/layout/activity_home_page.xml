@@ -12,11 +12,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="80dp"
         android:text="@string/allItemBttn"
-        app:layout_constraintBottom_toTopOf="@+id/yourItemBttn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.277" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/yourItemBttn"
@@ -37,4 +35,14 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/changePasswordIntent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Change Password"
+        app:layout_constraintBottom_toTopOf="@+id/yourItemBttn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/allItemBttn" />
 </androidx.constraintlayout.widget.ConstraintLayout>

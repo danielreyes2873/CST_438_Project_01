@@ -11,6 +11,9 @@ import com.example.cst_438_project_01.data_model.User;
 
 import java.util.List;
 
+/**
+ * User Data access Object. Methods here can be used to access the SQL backend for android rooms.
+ */
 @Dao
 public interface UserDAO {
     @Insert
@@ -33,6 +36,8 @@ public interface UserDAO {
     void deleteByPassword(String passwordString);
     @Query("DELETE FROM User")
     void deleteAll();
+    @Query("UPDATE User SET password = :password where UserID = :userID")
+    void changePassword(int userID, String password);
     @Insert
     void insertAll(List<User> users);
     @Update

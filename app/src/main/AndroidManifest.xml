@@ -15,7 +15,7 @@
             android:name=".itemsViewRec"
             android:exported="true" />
         <activity
-            android:name=".UserItemImage"
+            android:name=".PasswordChangeActivity"
             android:exported="true" />
         <activity
             android:name=".ViewItems"
