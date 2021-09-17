@@ -19,13 +19,10 @@ import android.widget.TextView;
 import com.example.cst_438_project_01.data_model.User;
 import com.example.cst_438_project_01.database.UserDatabase;
 
-import org.w3c.dom.Text;
-
 /**
  * Added a createUser Method
  */
 public class MainActivity extends AppCompatActivity {
-    //hello world
     private EditText userName;
     private EditText password;
     private Button loginBtn;
