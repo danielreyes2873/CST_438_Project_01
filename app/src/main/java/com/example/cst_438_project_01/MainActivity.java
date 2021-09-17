@@ -21,11 +21,15 @@ import com.example.cst_438_project_01.database.UserDatabase;
 
 import org.w3c.dom.Text;
 
+/**
+ * Added a createUser Method
+ */
 public class MainActivity extends AppCompatActivity {
     //hello world
     private EditText userName;
     private EditText password;
     private Button loginBtn;
+    private Button signUp;
     private TextView helpMessage;
 
     @Override
@@ -36,12 +40,19 @@ public class MainActivity extends AppCompatActivity {
         password = (EditText) findViewById(R.id.loginPassword);
         loginBtn = (Button) findViewById(R.id.loginButton);
         helpMessage = (TextView) findViewById(R.id.helpingMessage);
+        signUp = (Button) findViewById(R.id.signUpButton);
 
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //check if username and password are valid
                 validate(userName.getText().toString(), password.getText().toString());
+            }
+        });
+        signUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                createUser(userName.getText().toString(), password.getText().toString());
             }
         });
    }
@@ -71,6 +82,21 @@ public class MainActivity extends AppCompatActivity {
        }
        else{
            helpMessage.setText("Username does not exist");
+       }
+   }
+
+   private void createUser(String user, String userPassword) {
+        // Get the DB
+       UserDatabase userDatabase = UserDatabase.getInstance(this.getApplicationContext());
+       //Populate just in case
+       userDatabase.populateInitialData();
+       if (user.length()<1 || userPassword.length()<1) {
+           helpMessage.setText("Please enter a username and password");
+       } else if (userDatabase.userDao().findByUsername(user)==null) {
+           userDatabase.userDao().addUser(new User(user, userPassword));
+           helpMessage.setText("User created: welcome " + user);
+       } else {
+           helpMessage.setText("Username already in use, try another");
        }
    }
 
