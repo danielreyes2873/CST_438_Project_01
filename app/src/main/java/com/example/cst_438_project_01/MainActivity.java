@@ -20,9 +20,13 @@ import com.example.cst_438_project_01.data_model.User;
 import com.example.cst_438_project_01.database.UserDatabase;
 
 /**
- * Added a createUser Method
+ * This activity is used to login users.
+ *
  */
 public class MainActivity extends AppCompatActivity {
+
+
+    //Used to login
     private EditText userName;
     private EditText password;
     private Button loginBtn;
@@ -33,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         userName = (EditText) findViewById(R.id.loginUserName);
         password = (EditText) findViewById(R.id.loginPassword);
         loginBtn = (Button) findViewById(R.id.loginButton);
@@ -46,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
                 validate(userName.getText().toString(), password.getText().toString());
             }
         });
+
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -53,6 +59,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
    }
+
+    /**
+     * This function validates the user by accessing the database and checking if the username and password match.
+     * @param user This is the username that will be checked
+     * @param userPassword This is the password that has to correspond to the username in the database.
+     */
 
    private void validate(String user, String userPassword){
        //Access Database
@@ -74,10 +86,12 @@ public class MainActivity extends AppCompatActivity {
                startActivity(intent);
            }
            else{
+               //Password is wrong
                helpMessage.setText("Password is wrong. Try Again");
            }
        }
        else{
+           //Username was not found in the database
            helpMessage.setText("Username does not exist");
        }
    }

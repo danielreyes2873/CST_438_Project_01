@@ -24,6 +24,10 @@ import com.example.cst_438_project_01.database.ConceptDb;
 
 import org.w3c.dom.Text;
 
+/**
+ * This Activity allows the user to search for an item.
+ * It shows the info of the item and allows the user to click on the text to show the image.
+ */
 public class SearchActivity extends AppCompatActivity {
 
     private TextView textViewResult;
@@ -47,14 +51,18 @@ public class SearchActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
+
         textViewResult = findViewById(R.id.textView);
         searchButton = findViewById(R.id.button);
         searchField = findViewById(R.id.editTextSearch);
         itemButton = findViewById(R.id.button2);
         itemButton.setVisibility(View.INVISIBLE);
+
+        //Get username and ID from previous activity.
         String username = getIntent().getStringExtra("USERNAME");
         int userid = getIntent().getIntExtra("USERID", 0);
 
+        //Retrofit being used
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://botw-compendium.herokuapp.com/api/v2/")
                 .addConverterFactory(GsonConverterFactory.create())
@@ -65,11 +73,16 @@ public class SearchActivity extends AppCompatActivity {
 
 
         searchButton.setOnClickListener(view -> {
+            //Hide button at first
             itemButton.setVisibility(View.INVISIBLE);
+
             String search = searchField.getText().toString();
             search = search.replace(' ','_');
+
+            //call API using getData function. (Gets all data : ID, Name, Description, etc)
             Call<CompendiumData> call = compendiumAPI.getData(search);
             String finalSearch = search;
+
             call.enqueue(new Callback<CompendiumData>() {
                 @Override
                 public void onResponse(@NonNull Call<CompendiumData> call, @NonNull Response<CompendiumData> response) {
@@ -81,6 +94,8 @@ public class SearchActivity extends AppCompatActivity {
                     boolean validImage = false;
                     CompendiumData values = response.body();
                     String content = "";
+
+                    //If id is valid then continue
                     if (values.getCompendiumData().getId()!=0) {
                         StringBuilder drops = new StringBuilder();
                         StringBuilder locations = new StringBuilder();
@@ -128,7 +143,9 @@ public class SearchActivity extends AppCompatActivity {
                                     "\nCommon Locations: " + locations + "\n Click to View Image";
                             validImage = true;
                         }
+
                         itemButton.setVisibility(View.VISIBLE);
+
                         itemButton.setOnClickListener(view ->{
                             concepts.concept().addConcept(new Concept(userid, username, finalSearch));
 
@@ -145,13 +162,15 @@ public class SearchActivity extends AppCompatActivity {
                     } else {
                         content = "Nothing found, Please search again";
                     }
-                    textViewResult.setText(content);
-                    // assert values != null;
 
+                    textViewResult.setText(content);
+
+                    //checks if an image was found
                     if(validImage){
                         textViewResult.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
+                                //Show popUp
                                 showImage(values.getCompendiumData().getImage(), values.getCompendiumData().getName());
                             }
                         });
@@ -170,7 +189,14 @@ public class SearchActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Makes a popup and shows image. Image is grabbed by using Glide API.
+     * @param url URL of image. Used in API to grab image.
+     * @param nameOfImage Image name. Used to show name on top of popUp
+     */
     public void showImage(String url, String nameOfImage){
+
+        //Used to make popup
         dialogBuilder = new AlertDialog.Builder(this);
         final View popUp = getLayoutInflater().inflate(R.layout.image_popup, null);
 
@@ -178,16 +204,20 @@ public class SearchActivity extends AppCompatActivity {
         image = (ImageView) popUp.findViewById(R.id.itemImage);
         imageName = (TextView) popUp.findViewById(R.id.itemName);
 
+        //Set the name of image
         imageName.setText(nameOfImage);
 
+        //Load image into the ImageView
         Glide.with(this)
                 .load(url)
                 .into(image);
 
+        //Show popUp
         dialogBuilder.setView(popUp);
         dialog = dialogBuilder.create();
         dialog.show();
 
+        //Close PopUp
         closeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
