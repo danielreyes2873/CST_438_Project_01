@@ -9,6 +9,9 @@ import androidx.room.RoomDatabase;
 import com.example.cst_438_project_01.dao.UserDAO;
 import com.example.cst_438_project_01.data_model.User;
 
+/***
+ * User Database class for Android Rooms.
+ */
 @Database(entities = User.class, exportSchema = false, version = 1)
 public abstract class UserDatabase extends RoomDatabase{
     private static final String DB_NAME = "user_db";

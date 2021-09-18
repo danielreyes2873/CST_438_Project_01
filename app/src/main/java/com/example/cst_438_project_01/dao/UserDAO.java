@@ -11,6 +11,9 @@ import com.example.cst_438_project_01.data_model.User;
 
 import java.util.List;
 
+/**
+ * User Data access Object. Methods here can be used to access the SQL backend for android rooms.
+ */
 @Dao
 public interface UserDAO {
     @Insert

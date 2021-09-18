@@ -19,13 +19,12 @@ import android.widget.TextView;
 import com.example.cst_438_project_01.data_model.User;
 import com.example.cst_438_project_01.database.UserDatabase;
 
-import org.w3c.dom.Text;
-
 /**
  * This activity is used to login users.
  *
  */
 public class MainActivity extends AppCompatActivity {
+
 
     //Used to login
     private EditText userName;
